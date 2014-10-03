@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+  <title>D3.js Spectrum Analyser</title>
+  <style>
+  #visualisation .line{
+    fill:none;
+    stroke:black;
+    stroke-width:1px;
+  }
+  </style>
+</head>
+<body>
+  <button id="toggle">Play</button>
+  <div id="visualisation"></div>
+  <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+  <script src="js/visual.js"></script>
+  <script src="js/audio.js"></script>
+  <script>
+  var sa = new SpectrumAnalyser();
+  sa.loadAudio('audio/test.mp3');
+
+  var toggle = document.getElementById('toggle');
+
+  document.addEventListener('click', function(e) {
+    if (e.target == toggle) {
+      if (!sa.playing) {
+        sa.play();
+        toggle.innerText = 'Stop';
+      } else {
+        sa.stop();
+        toggle.innerText = 'Play';
+      }
+    }
+  }, false);
+  </script>
+</body>
+</html>
