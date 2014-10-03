@@ -3,7 +3,12 @@
 <head>
   <title>D3.js Spectrum Analyser</title>
   <style>
-  #visualisation .line{
+  button{
+    display:block;
+    margin:0 auto;
+  }
+
+  svg .line{
     fill:none;
     stroke:black;
     stroke-width:1px;
@@ -12,27 +17,11 @@
 </head>
 <body>
   <button id="toggle">Play</button>
-  <div id="visualisation"></div>
-  <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-  <script src="js/visual.js"></script>
-  <script src="js/audio.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.14/require.min.js"></script>
   <script>
-  var sa = new SpectrumAnalyser();
-  sa.loadAudio('audio/test.mp3');
-
-  var toggle = document.getElementById('toggle');
-
-  document.addEventListener('click', function(e) {
-    if (e.target == toggle) {
-      if (!sa.playing) {
-        sa.play();
-        toggle.innerText = 'Stop';
-      } else {
-        sa.stop();
-        toggle.innerText = 'Play';
-      }
-    }
-  }, false);
+  require(['/js/config.js'], function() {
+    require(['/js/app.js']);
+  });
   </script>
   <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
